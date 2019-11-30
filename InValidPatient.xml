@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/patient.xsd"
+    xmlns="http://hl7.org/fhir">
+  <!-- 
+  Patient Example:
+    Gender: Male
+    BirthDate: 12/1/1933
+    Family Name: Rawls
+    Given Name: Lou
+    BNI Identifier: 429
+    OHAPR: Identifier: 1234567890
+    Telephone: +5411-99-9999
+    PPH TaxSituation: Z  not one of the valid codes of U, M, or V)
+
+  --> 
+   <!-- Profile Declaration -->
+   <meta>
+       <profile value="https://simplifier.net/MAISSOPORTEAFACTURA/BMOPatient"></profile>
+   </meta> 
+   <!-- Req # BMHO.121.7: Text:   -->
+   <text>
+       <status value="generated"></status>
+       <div xmlns="http://www.w3.org/1999/xhtml">
+           Gender: Male
+           BirthDate: 12/1/1933
+           Family Name: Rawls
+           Given Name: Lou
+           BNI Identifier: 429
+           OHAPR Identifier: 1234567890
+           Telephone: +5411-99-9999
+           PPH TaxSituation: Z
+           
+       </div>
+   </text>
+    <!-- Req # BMHO.121.5: PPH Tax:  -->
+    <extension url="https://simplifier.net/MAISSOPORTEAFACTURA/PPHTaxSituation/~xml">
+        <valueCode value="Z"></valueCode>  
+    </extension>
+    <!-- Req # BMHO.121.4.a: BNI  -->
+    <identifier>
+       <system value="www.berzerkistan.gov/bni"></system>
+       <value value="429"></value>
+   </identifier>
+    <!-- Req # BMHO.121.4.b: NHIB - OHAPR -->
+    <identifier>
+        <system value="www.oha.org/ohaprid"></system>
+        <value value="1234567890"></value>
+    </identifier>
+    
+    <!-- Req # BMHO.121.3: Name   -->
+    <name>
+        <!-- Req # BMHO.121.3.b: Family   -->
+        <family value="Rawls"></family>
+        <!-- Req # BMHO.121.3.a: Given   -->
+        <given value="Lou"></given>
+        
+    </name>
+    <!-- Req # BMHO.121.6: Telephone  -->
+    <telecom>
+        <system value="phone"></system>
+        <value value="+5411-99-9999"></value> 
+    </telecom>
+    <!-- Req # BMHO.121.1: Gender   -->
+    <gender value="male"></gender>
+    <!-- Req # BMHO.121.2: BirthDate    -->
+    <birthDate value="1933-12-01"></birthDate>
+</Patient>

@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+PatientCategory value set definition created from the file, SmallValueSetExample.xml
+Look for commented out sections to see where changes were made to turn the SimpleExtension into a PatientCategory extension
+-->
+<ValueSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xmlns="http://hl7.org/fhir">
+  <!--
+  <text>
+    <status value="generated"/>
+    <div xmlns="http://www.w3.org/1999/xhtml"> 
+      <p>Value set "PPH Table" Berzerkistan PPH Patient Tax Situation</p> 
+      <table class="grid"> 
+        <tr> 
+          <td>U</td> 
+          <td>UNCOVERED</td> 
+          <td>PATIENT PAYS 21%</td> </tr> 
+        <tr> 
+          <td>V</td> 
+          <td>VOLUNTARY</td> 
+          <td>PATIENT PAYS 10.5%</td> </tr> 
+        <tr> 
+          <td>M</td> 
+          <td>MANDATED</td> 
+          <td>PATIENT PAYS 0%</td> </tr> 
+      </table>
+      </div>
+  </text>
+  -->
+  <text>
+    <status value="generated"/>
+    <div xmlns="http://www.w3.org/1999/xhtml"> 
+      <p>Value set "Patient Cateogry Table" UWearMe Patient Categories</p> 
+      <table class="grid"> 
+        <tr> 
+          <td>N</td> 
+          <td>NORMAL</td> 
+          <td>PATIENT IS NOT PAYING</td> </tr> 
+        <tr> 
+          <td>G</td> 
+          <td>GOLD</td> 
+          <td>PATIENT IS PAYING USD 8 PER MONTH</td> </tr> 
+        <tr> 
+          <td>P</td> 
+          <td>PLATINUM</td> 
+          <td>PATIENT IS PAYING USD 28 PER MONTH</td> </tr> 
+        <tr> 
+          <td>F</td> 
+          <td>FAMILY</td> 
+          <td>PATIENT IS PAYING USD 35 PER MONTH, UP TO 4 PERSONS</td> </tr> 
+      </table>
+    </div>
+  </text>
+  <!--
+  <url value="http://fhir.hl7fundamentals.org/berzerkistan/ValueSet/PatientTaxSituation"/>
+  <identifier>
+    <system value="http://fhir.hl7fundamentals.org/berzerkistan/identifiers/valuesets"/>
+    <value value="PatientTaxSituation"/>
+  </identifier>
+  <version value="20151120"/>
+  <name value="Berzerkistan PPH Tax Situation - 20151120"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <publisher value="Berzerkistan Healthcare Ministry"/>
+  -->
+  <url value="http://fhir.hl7fundamentals.org/uwearme/ValueSet/PatientCategory"/>
+  <identifier>
+    <system value="http://fhir.hl7fundamentals.org/uwearme/identifiers/valuesets"/>
+    <value value="PatientCategory"/>
+  </identifier>
+  <version value="20151120"/>
+  <name value="UWearMe Patient Category - 20151120"/>
+  <status value="draft"/>
+  <experimental value="true"/>
+  <publisher value="UWearMe Inc."/>
+ <!--
+  <contact>
+    <name value="Professor Allan Karim Von Mannenheim"/>
+    <telecom>
+      <system value="other"/>
+      <value value="http://bhm.org.bz/fhir"/>
+    </telecom>
+  </contact>
+  -->
+  <contact>
+    <name value="William Balou"/>
+    <telecom>
+      <system value="other"/>
+      <value value="http://uwearme.org.bz/fhir"/>
+    </telecom>
+  </contact>
+  <!--
+  <description value="Berzerkistan PPH Tax Situation - 20151120"/>
+  -->
+  <description value="UWearMe Patient Category - 20151120"/>
+  <extensible value="false"></extensible>  
+  <!--
+  <compose>
+    <include> 
+      <system value="http://fhir.hl7fundamentals.org/berzerkistan/CodeSystem/PatientTaxSituation"/> 
+      <concept>
+        <code value="U"></code>
+        <display value="UNCOVERED"></display>
+      </concept>
+      <concept>
+        <code value="M"></code>
+        <display value="MANDATED"></display>
+      </concept>
+      <concept>
+        <code value="V">
+        </code>
+        <display value="VOLUNTARY"></display>
+      </concept>
+    </include> 
+  </compose>
+  -->
+  <compose>
+    <include> 
+      <system value="http://fhir.hl7fundamentals.org/uwearme/CodeSystem/PatientCategory"/> 
+      <concept>
+        <code value="N"></code>
+        <display value="NORMAL"></display>
+      </concept>
+      <concept>
+        <code value="G"></code>
+        <display value="GOLD"></display>
+      </concept>
+      <concept>
+        <code value="P">
+        </code>
+        <display value="PLATINUM"></display>
+      </concept>
+      <concept>
+        <code value="F">
+        </code>
+        <display value="FAMILY"></display>
+      </concept>
+    </include> 
+  </compose>
+  
+</ValueSet>

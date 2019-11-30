@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Patient  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/patient.xsd"
+xmlns="http://hl7.org/fhir">
+   <id value="2615012"/>
+   <meta>
+      <extension url="http://hapifhir.io/fhir/StructureDefinition/resource-meta-source">
+         <valueUri value="#n4YUFhKGnHzNYEhC"/>
+      </extension>
+      <versionId value="1"/>
+      <lastUpdated value="2019-11-03T15:10:55.663+00:00"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml">Billy Balou</div>
+   </text>
+   <identifier>
+      <system value="http://clinfhir.com/fhir/NamingSystem/identifier"/>
+      <value value="billy.balou"/>
+   </identifier>
+   <name>
+      <use value="official"/>
+      <text value="Billy Balou"/>
+      <family value="Balou"/>
+      <given value="Billy"/>
+   </name>
+   <gender value="male"/>
+   <birthDate value="2000-11-03"/>
+      
+   <address>
+		<line value="3300 Washtenaw"></line>
+		<city value="Ann Harbor"></city>
+		<district value="Washtenaw"></district>
+		<state value="MI"></state>
+		<postalCode value="48104"></postalCode>
+		<country value="US"></country>
+	</address>
+
+  <contact>
+     <telecom>
+		<system value="phone"></system>
+		<value value="(03) 5555 6789."></value>
+		<use value="home"></use> 
+	</telecom>
+	</contact>
+
+</Patient>
+

@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+FHIR Fundamental Course - MODULE 3, POST TRANSACTION 2 of 3
+Patient Identifier = william.balouV
+SYT BP: 2018-11-15T11:00:00Z, measurement = 102
+DIA BP: 2015-11-15T11:00:00Z, measurement = 82
+HRT RT: 2017-11-15T11:00:00Z, measurement = 72
+RSP RT: 2016-11-15T11:00:00Z, measurement = 22
+
+Post at least 3 transactions for the same patient, holding four different measures for the 4 vital signs, separated by 15 minutes.
+
+Created by your engineer just before leaving the company
+        Left some good clues, though
+-->
+<!-- Here is the Bundle statement that came in DraftMeasure.xml
+<Bundle xmlns="http://hl7.org/fhir"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ -->
+
+<!-- Here is the Bundle header modeled after the what I got to work for Patient.xml    -->
+ <Bundle  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/bundle.xsd"
+xmlns="http://hl7.org/fhir">	
+    <type value="transaction"> </type>
+    <entry>
+        <fullUrl value ="urn:uuid:17C7D86E-664F-4FE2-91D7-AF9A8E47311E"/>
+        <resource>
+            <Organization>
+                <text>
+                    <status value="generated"/>
+                    <div xmlns="http://www.w3.org/1999/xhtml"> UWEARME - A DIVISION OF HEALTH GIZMOS
+                        CORP </div>
+                </text>
+                <identifier>
+                    <system value="www.nationalorgidentifier.gov/ids"/>
+                    <value value="UWEARME_BILLY.BALOU"/>
+
+                </identifier>
+                <name value="UWEARME"/>
+                <address>
+                    <line value="2000 WEARABLE DRIVE"/>
+                    <city value="ANN ARBOR"/>
+                    <state value="MI"/>
+                    <country value="US"/>
+              </address>
+            </Organization>
+        </resource>
+        <request>
+            <method value="PUT"/>
+            <url value="Organization?identifier=www.nationalorgidentifier.gov/ids|UWEARME_BILLY.BALOU"/>
+        </request>
+    </entry>
+    <entry>
+        <fullUrl value="urn:uuid:0fc374a1-a226-4552-9683-55dd510e67c9"/>
+        
+        <resource>
+            <!-- This is all the DraftMeasure.xml file had for the Patient header
+			<Patient>
+			-->
+			<Patient  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/patient.xsd"
+xmlns="http://hl7.org/fhir">
+                <text>
+                    <status value="generated"/>
+					<!-- Here is the fragment DraftMeasure had
+                    <div xmlns="http://www.w3.org/1999/xhtml"> 
+                        [YOUR NAME] Id # [YOUR PATIENT ID] 
+                    </div>
+					-->
+					<div xmlns="http://www.w3.org/1999/xhtml">Billy Balou Id # william.balouV</div>
+
+                </text>
+                <identifier>
+                    <system value="www.mypatientidentifier.com/ids"/>
+                    <value value="william.balouV"/>
+                </identifier>
+                <name>
+                    <family value="Balou"/>
+                    <given value="Billy"/>
+                </name>
+                <address>
+                    <line value="3300 Washtenaw"/>
+                    <city value="Ann Harbor"/>
+                    <state value="MI"/>
+                    <country value="US"/>
+                </address>
+                <managingOrganization>
+                    <reference value="urn:uuid:17C7D86E-664F-4FE2-91D7-AF9A8E47311E"
+                    > </reference>
+                </managingOrganization>
+            </Patient>
+
+        </resource>
+		 <request>
+            <method value="PUT"/>
+            <url value="Patient?identifier=www.mypatientidentifier.com/ids|william.balouV"/>
+        </request>
+    </entry>
+    <entry>
+		<!-- Use the device URL referenced in the Observation resource to create a full reference URL here for device -->
+		<fullUrl value="urn:uuid:01ba878a-e49d-4bac-b629-9de3fcb7e83a"/>
+		<resource>
+         <!-- Device goes here -->
+			<Device xmlns="http://hl7.org/fhir" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">   
+			<text>
+				<status value="generated"/>
+				<div xmlns="http://www.w3.org/1999/xhtml"> UW Device billy.balou
+				</div>
+			</text>
+			<identifier>
+				<system value="www.uwearme.com/dev"/>
+				<value value="UWDevicebilly.balou"/>
+				
+			</identifier>
+			
+			<expirationDate value="2020-10-10"></expirationDate> 
+			<lotNumber value="22222"></lotNumber>
+			<modelNumber value="u888800-1"></modelNumber> 
+			<type>
+				<coding>
+					<system value=" http://snomed.info/sct"/>
+					<code value="33894003"/>
+					<display value="Experimental Device"></display>
+				</coding>
+			</type>
+		   
+			<patient>
+				<reference value="urn:uuid:0fc374a1-a226-4552-9683-55dd510e67c9"/> 
+			</patient>
+			
+			<owner>
+				<reference value="urn:uuid:17C7D86E-664F-4FE2-91D7-AF9A8E47311E"/>
+				   
+			</owner>
+		   
+		   </Device>
+        </resource>
+        <request>
+            <method value="PUT"/>
+            <url value="Device?identifier=www.uwearme.com/dev|UWDevicebilly.balou"/>
+        </request>
+
+    </entry>
+
+    <entry>
+        <resource>
+            <!-- SYS BP Observation goes here -->
+				 <Observation  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+					xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/observation.xsd"
+				xmlns="http://hl7.org/fhir">   
+					<text>
+						<status value="generated"/>
+						
+						<div xmlns="http://www.w3.org/1999/xhtml"> UW Device for Pat # william.balouV 
+							Systolic BP: 102 mmHg on 2018-11-15T11:00:00Z
+						</div>
+					</text>
+					<identifier>
+						<system value="www.uwearme.com/measures"/>
+
+						<value value="william.balouV-2018-11-15T11:00:00Z-8480-6"/>
+						
+					</identifier>
+					<status value="final"/>
+					<code>
+						<coding>
+							<system value="http://loinc.org"/>
+							
+							<code value="8480-6"/>
+							<display value="Systolic BP"/>
+						</coding>
+					</code>
+					<subject>
+						<reference value="urn:uuid:0fc374a1-a226-4552-9683-55dd510e67c9"> </reference>
+						
+					</subject>
+					<effectiveDateTime value="2018-11-15T11:00:00Z"/>
+					
+					<valueQuantity>
+					  
+						<value value="102"/>
+						<unit value="mmHg"/>
+					</valueQuantity>
+					
+					<device>
+						<reference value="urn:uuid:01ba878a-e49d-4bac-b629-9de3fcb7e83a"> </reference>
+					</device>
+					
+				</Observation>
+
+        </resource>
+		<request>
+			<method value="POST"/>
+			<url value="Observation"/>
+		</request>
+        
+    </entry>
+	<entry>
+        <resource>
+		<!-- Diastolic BP Observation goes here -->
+			 <Observation  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/observation.xsd"
+			xmlns="http://hl7.org/fhir">   
+				<text>
+					<status value="generated"/>
+					
+					<div xmlns="http://www.w3.org/1999/xhtml"> UW Device for Pat # william.balouV 
+						Diastolic BP: 82 mmHg on 2015-11-15T11:00:00Z
+					</div>
+				</text>
+				<identifier>
+					<system value="www.uwearme.com/measures"/>
+					<value value="william.balouV-2015-11-15T11:00:00Z-8462-4"/>
+					
+				</identifier>
+				<status value="final"/>
+				<code>
+					<coding>
+						<system value="http://loinc.org"/>
+						
+						<code value="8462-4"/>
+						<display value="Diastolic BP"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:0fc374a1-a226-4552-9683-55dd510e67c9"> </reference>
+					
+				</subject>
+				
+				<effectiveDateTime value="2015-11-15T11:00:00Z"/>
+				
+				<valueQuantity>
+				  
+					<value value="82"/>
+					<unit value="mmHg"/>
+				</valueQuantity>
+				
+				<device>
+					<reference value="urn:uuid:01ba878a-e49d-4bac-b629-9de3fcb7e83a"> </reference>
+				</device>
+				
+			</Observation>
+		</resource>
+		<request>
+			<method value="POST"/>
+			<url value="Observation"/>
+		</request>
+	</entry>
+	<entry>
+        <resource>
+		<!-- Heart Rate Observation goes here -->
+			<Observation  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/observation.xsd"
+			xmlns="http://hl7.org/fhir">   
+				<text>
+					<status value="generated"/>
+					
+					<div xmlns="http://www.w3.org/1999/xhtml"> UW Device for Pat # william.balouV 
+						Heart Rate: 72 /min on 2017-11-15T11:00:00Z
+					</div>
+				</text>
+				<identifier>
+					<system value="www.uwearme.com/measures"/>
+					
+					<value value="william.balouV-2017-11-15T11:00:00Z-8867-4"/>
+					
+				</identifier>
+				<status value="final"/>
+				<code>
+					<coding>
+						<system value="http://loinc.org"/>
+						
+						<code value="8867-4"/>
+						<display value="Heart Rate"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:0fc374a1-a226-4552-9683-55dd510e67c9"> </reference>
+					
+				</subject>
+				
+				<effectiveDateTime value="2017-11-15T11:00:00Z"/>
+				
+				<valueQuantity>
+				  
+					<value value="72"/>
+					<unit value="/min"/>
+				</valueQuantity>
+				
+				<device>
+					<reference value="urn:uuid:01ba878a-e49d-4bac-b629-9de3fcb7e83a"> </reference>
+				</device>
+				
+			</Observation>
+
+		</resource>
+		<request>
+			<method value="POST"/>
+			<url value="Observation"/>
+		</request>
+	</entry>
+	<entry>
+        <resource>
+		<!-- Respiratory Rate Observation goes here -->
+			<Observation  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://hl7.org/fhir C:/fhir-all-xsd/observation.xsd"
+			xmlns="http://hl7.org/fhir">   
+				<text>
+					<status value="generated"/>
+					
+					<div xmlns="http://www.w3.org/1999/xhtml"> UW Device for Pat # william.balouV 
+						Respiratory Rate: 22 /min on 2016-11-15T11:00:00Z
+					</div>
+				</text>
+				<identifier>
+					<system value="www.uwearme.com/measures"/>
+					<value value="william.balouV-2016-11-15T11:00:00Z-9279-1"/>
+					
+				</identifier>
+				<status value="final"/>
+				<code>
+					<coding>
+						<system value="http://loinc.org"/>
+					
+						<code value="9279-1"/>
+						<display value="Respiratory Rate"/>
+					</coding>
+				</code>
+				<subject>
+					<reference value="urn:uuid:0fc374a1-a226-4552-9683-55dd510e67c9"> </reference>
+					
+				</subject>
+			
+				<effectiveDateTime value="2016-11-15T11:00:00Z"/>
+				
+				<valueQuantity>
+				 
+					<value value="22"/>
+					<unit value="/min"/>
+				</valueQuantity>
+				
+				<device>
+					<reference value="urn:uuid:01ba878a-e49d-4bac-b629-9de3fcb7e83a"> </reference>
+				</device>
+				
+			</Observation>
+		</resource>
+		<request>
+			<method value="POST"/>
+			<url value="Observation"/>
+		</request>
+	</entry>
+	
+	
+
+</Bundle>
